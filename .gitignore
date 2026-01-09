@@ -1,1 +1,86 @@
+# 开发文档（不对外暴露）
 dev_docs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# 虚拟环境
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# 日志和临时文件
+*.log
+logs/
+*.tmp
+*.temp
+
+# 数据和模型
+data/raw/
+data/processed/
+models/
+checkpoints/
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Wandb
+wandb/
+
+# 环境变量
+.env
+.env.local
+
+# Conda
+.conda/
+
+# 其他
+*.bak
+*.orig
+.cache/
