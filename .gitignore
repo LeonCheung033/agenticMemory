@@ -84,3 +84,4 @@ wandb/
 *.bak
 *.orig
 .cache/
+Trinity-RFT/
