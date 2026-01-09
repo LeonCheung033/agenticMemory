@@ -14,30 +14,32 @@ Agentic Memory: Learning Unified Long-Term and Short-Term Memory Management for 
 
 #### 使用 Conda (推荐)
 
-1. **创建并激活环境**:
+**方式1: 使用自动化脚本（推荐）**
+```bash
+bash scripts/setup_env.sh
+```
+
+**方式2: 手动安装**
+
+1. **创建conda环境（仅Python和pip）**:
 ```bash
 conda env create -f environment.yml
 conda activate agemem
 ```
 
-2. **安装开发依赖**:
+2. **安装所有依赖**:
 ```bash
-pip install -e ".[dev]"
+bash scripts/install_dependencies.sh
 ```
 
-3. **下载NLTK数据**:
+3. **安装项目包**:
 ```bash
-python -c "import nltk; nltk.download('punkt')"
+pip install -e ".[dev]"
 ```
 
 4. **安装pre-commit hooks**:
 ```bash
 pre-commit install
-```
-
-或者使用提供的脚本:
-```bash
-bash scripts/setup_env.sh
 ```
 
 #### 使用 pip
