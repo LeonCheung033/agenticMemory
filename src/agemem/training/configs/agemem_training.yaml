@@ -1,0 +1,57 @@
+# AgeMem训练配置
+name: agemem_training
+
+# Explorer配置
+explorer:
+  rollout_model:
+    model_type: "qwen"  # 或其他支持的模型类型
+    model_name: "Qwen/Qwen2.5-7B-Instruct"
+    enable_history: true  # 必须为true，用于step-wise奖励
+
+  workflow:
+    name: "agemem_workflow"  # 注册的workflow名称
+
+  # 任务配置
+  tasks:
+    - name: "hotpotqa"  # 或其他数据集
+      workflow: "agemem_workflow"
+      repeat_times: 8  # K=8个rollout
+      workflow_args:
+        max_stage1_turns: 4
+        max_stage2_turns: 4
+        max_stage3_turns: 6
+        max_tokens: 8192
+        embedding_dim: 384
+        ltm_index_path: null  # 可选：LTM持久化路径
+      reward_fn_args:
+        w_task: 0.333
+        w_context: 0.333
+        w_memory: 0.333
+        max_tokens: 8192
+        max_rounds: 20
+        penalty_no_answer: -1.0
+        penalty_rounds: -1.0
+        penalty_overflow: -0.5
+
+# Trainer配置
+trainer:
+  algorithm: "grpo"  # Group Relative Policy Optimization
+  kl_coef: 0.1  # β in paper
+  clip_epsilon: 0.2  # ε in paper
+
+  optimizer:
+    type: "adamw"
+    lr: 1e-6
+    weight_decay: 0.01
+
+# Buffer配置
+buffer:
+  batch_size: 16  # B tasks per batch
+
+# 其他配置
+logging:
+  level: "INFO"
+
+checkpoint:
+  save_dir: "./checkpoints/agemem"
+  save_frequency: 100
